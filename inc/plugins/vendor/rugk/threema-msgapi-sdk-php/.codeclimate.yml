@@ -1,0 +1,19 @@
+engines:
+  csslint:
+    enabled: false
+  fixme:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+    checks:
+      Generic WhiteSpace DisallowTabIndent TabsUsed:
+        enabled: false	
+  phpmd:
+    enabled: true
+ratings:
+  paths:
+  - "**.php"
+  - "**.module"
+  - "**.inc"
+exclude_paths:
+- source/Salt/**/*
