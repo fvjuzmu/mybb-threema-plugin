@@ -8,7 +8,7 @@ With this plugin you can enable MyBB to send Notifications about new Posts to yo
 - Optional: libsodium PHP extension (https://gateway.threema.ch/de/developer/sdk-php) 
 
 ## Installation
-- Download the zip of the [latest stable version](/releases/latest)
+- Download the zip of the [latest stable version](https://github.com/fvjuzmu/mybb-threema-plugin/releases/latest)
 - Unzip the folder *inc* from this zip into your forum root folder
 - Give the forum the permission to write into the *inc/plugins/vendor/threema_keystore.txt* file. Thats the same permission as the upload folder in your forum root folder.
 - Install and activate the plugin in the admin panel of your forum
