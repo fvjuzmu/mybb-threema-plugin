@@ -20,7 +20,6 @@ use Threema\MsgApi\ConnectionSettings;
 use Threema\MsgApi\Receiver;
 
 
-//$plugins->add_hook('datahandler_post_insert_thread', 'threema_send_new_thread_notification');
 $plugins->add_hook('newthread_do_newthread_end', 'threema_send_new_thread_notification');
 $plugins->add_hook('datahandler_post_insert_post_end', 'threema_send_new_reply_notification');
 
@@ -48,7 +47,6 @@ function threema_send_new_thread_notification()
         }
 
         $userName = $GLOBALS['new_thread']['username'];
-        $forumName = $GLOBALS['forum']['name'];
         $parentID = $GLOBALS['forum']['pid'];
         $parentName = $GLOBALS['forum_cache'][$parentID]['name'];
         $threadID = $GLOBALS['thread_info']['tid'];
@@ -106,18 +104,18 @@ function threema_send_notifications($message)
 {
     global $db;
 
-    $fid = $GLOBALS['settings']['threema_fid'];
+    $fid = "fid" . $GLOBALS['settings']['threema_fid'];
 
     $threema = threemaConnect();
 
     // GET Threema IDs of alle users that are not banned
 
-    $queryUserKeys = $db->simple_select("userfields", "ufid, fid" . $fid, "fid" . $fid . " is not NULL and ufid not in (select uid from " . $db['table_prefix'] . "banned where lifted = 0)", array(
+    $queryUserKeys = $db->simple_select("userfields", "ufid, " . $fid, $fid . " is not NULL and ufid not in (select uid from " . $db->table_prefix . "banned where lifted = 0)", array(
         "order_by" => 'ufid',
         "order_dir" => 'DESC'
     ));
 
-    //send notification to every user except the user which postet
+    //send notification to every user except the user which posted
     while($userKey = $db->fetch_array($queryUserKeys))
     {
         if($userKey['ufid'] == $GLOBALS['uid'])
@@ -125,7 +123,7 @@ function threema_send_notifications($message)
             continue;
         }
 
-        $receiver = new Receiver($userKey['fid7'], Receiver::TYPE_ID);
+        $receiver = new Receiver($userKey[$fid], Receiver::TYPE_ID);
         $result = $threema->sendSimple($receiver, $message);
         if(!$result->isSuccess())
         {
