@@ -110,7 +110,7 @@ function threema_send_notifications($message)
 
     // GET Threema IDs of alle users that are not banned
 
-    $queryUserKeys = $db->simple_select("userfields", "ufid, " . $fid, $fid . " is not NULL and ufid not in (select uid from " . $db->table_prefix . "banned where lifted = 0)", array(
+    $queryUserKeys = $db->simple_select("userfields", "ufid, " . $fid, $fid . " is not NULL and " . $fid . " != '' and ufid not in (select uid from " . $db->table_prefix . "banned where lifted = 0)", array(
         "order_by" => 'ufid',
         "order_dir" => 'DESC'
     ));
