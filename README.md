@@ -32,7 +32,7 @@ A: Thats a bit tricky, check out this screenshot [find_custom_field_id.png](http
 
 **Q: Why is the plugin sending all messages in german language**
 
-A: Because the author is from germany and at the moment this is the only supported language. Sorry. However you can simply customize it by your selfe. Just edit these two lines: [58](https://github.com/fvjuzmu/mybb-threema-plugin/blob/master/inc/plugins/threema.php#L58), [84](https://github.com/fvjuzmu/mybb-threema-plugin/blob/master/inc/plugins/threema.php#L84)
+A: Because the author is from germany and at the moment this is the only supported language. Sorry. However you can simply customize it by your selfe. Just edit these two lines: [56](https://github.com/fvjuzmu/mybb-threema-plugin/blob/master/inc/plugins/threema.php#L58), [82](https://github.com/fvjuzmu/mybb-threema-plugin/blob/master/inc/plugins/threema.php#L84)
 
 ## License information
 This plugin ships with:
