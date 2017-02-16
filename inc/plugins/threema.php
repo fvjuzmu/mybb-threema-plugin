@@ -31,7 +31,7 @@ function threema_info()
         'website' => 'https://github.com/fvjuzmu/mybb-threema-plugin',
         'author' => 'soulflyman',
         'authorsite' => 'https://github.com/soulflyman',
-        'version' => '1.0',
+        'version' => '1.1',
         'compatibility' => '18*',
         'codename' => 'threema'
     );
@@ -66,7 +66,7 @@ function threema_send_new_reply_notification()
 {
     try
     {
-        if($GLOBALS['post']['savedraft'] == 1 || threema_is_forum_blacklisted())
+        if($mybb->input['savedraft'] || threema_is_forum_blacklisted())
         {
             return;
         }
